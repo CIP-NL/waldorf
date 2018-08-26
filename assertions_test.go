@@ -1,8 +1,9 @@
 package waldorf
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func getWaldorf() *Observation {
@@ -20,12 +21,12 @@ func TestObservation_IsFalse(t *testing.T) {
 		desc      string
 	}{
 		{
-			statement: 1 == 2,
+			statement: false,
 			wantErr:   false,
 			desc:      "ShouldBeFalse(1 == 2) should return True",
 		},
 		{
-			statement: 1 == 1,
+			statement: true,
 			wantErr:   true,
 			desc:      "ShouldBeFalse(1 == 1) should return False",
 		},
@@ -52,12 +53,12 @@ func TestObservation_IsTrue(t *testing.T) {
 		desc      string
 	}{
 		{
-			statement: 1 == 1,
+			statement: true,
 			wantErr:   false,
 			desc:      "ShouldBeTrue(1 == 1) should return %s",
 		},
 		{
-			statement: 1 == 2,
+			statement: false,
 			wantErr:   true,
 			desc:      "ShouldBeTrue(1 == 2) should return %s",
 		},
@@ -85,26 +86,26 @@ func TestObservation_EitherShouldBeTrue(t *testing.T) {
 		desc         string
 	}{
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 1,
+			statementOne: true,
+			statementTwo: true,
 			wantErr:      false,
 			desc:         "EitherShouldBeTrue(1 == 1, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 1,
+			statementOne: false,
+			statementTwo: true,
 			wantErr:      false,
 			desc:         "EitherShouldBeTrue(1 == 2, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 2,
+			statementOne: true,
+			statementTwo: false,
 			wantErr:      false,
 			desc:         "EitherShouldBeTrue(1 == 1, 1 == 2) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 2,
+			statementOne: false,
+			statementTwo: false,
 			wantErr:      true,
 			desc:         "EitherShouldBeTrue(1 == 2, 1 == 2) should be %s",
 		},
@@ -132,26 +133,26 @@ func TestObservation_BothShouldBeTrue(t *testing.T) {
 		desc         string
 	}{
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 1,
+			statementOne: true,
+			statementTwo: true,
 			wantErr:      false,
 			desc:         "BothShouldBeTrue(1 == 1, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 1,
+			statementOne: false,
+			statementTwo: true,
 			wantErr:      true,
 			desc:         "BothShouldBeTrue(1 == 2, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 2,
+			statementOne: true,
+			statementTwo: false,
 			wantErr:      true,
 			desc:         "BothShouldBeTrue(1 == 1, 1 == 2) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 2,
+			statementOne: false,
+			statementTwo: false,
 			wantErr:      true,
 			desc:         "BothShouldBeTrue(1 == 2, 1 == 2) should be %s",
 		},
@@ -179,26 +180,26 @@ func TestObservation_EitherNeither(t *testing.T) {
 		desc         string
 	}{
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 1,
+			statementOne: true,
+			statementTwo: true,
 			wantErr:      true,
 			desc:         "EitherNeither(1 == 1, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 1,
+			statementOne: false,
+			statementTwo: true,
 			wantErr:      false,
 			desc:         "EitherNeither(1 == 2, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 2,
+			statementOne: true,
+			statementTwo: false,
 			wantErr:      false,
 			desc:         "EitherNeither(1 == 1, 1 == 2) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 2,
+			statementOne: false,
+			statementTwo: false,
 			wantErr:      false,
 			desc:         "EitherNeither(1 == 2, 1 == 2) should be %s",
 		},
@@ -226,26 +227,26 @@ func TestObservation_IfThisThenThat(t *testing.T) {
 		desc         string
 	}{
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 1,
+			statementOne: true,
+			statementTwo: true,
 			wantErr:      false,
 			desc:         "IfThisThenThat(1 == 1, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 1,
+			statementOne: false,
+			statementTwo: true,
 			wantErr:      false,
 			desc:         "IfThisThenThat(1 == 2, 1 == 1) should be %s",
 		},
 		{
-			statementOne: 1 == 1,
-			statementTwo: 1 == 2,
+			statementOne: true,
+			statementTwo: false,
 			wantErr:      true,
 			desc:         "IfThisThenThat(1 == 1, 1 == 2) should be %s",
 		},
 		{
-			statementOne: 1 == 2,
-			statementTwo: 1 == 2,
+			statementOne: false,
+			statementTwo: false,
 			wantErr:      false,
 			desc:         "IfThisThenThat(1 == 2, 1 == 2) should be %s",
 		},
@@ -286,11 +287,11 @@ func TestObservation_Ridicule(t *testing.T) {
 	)
 
 	// correct observation, should not be in the list
-	waldorf.ShouldBeTrue(1 == 1, notRidiculed)
+	waldorf.ShouldBeTrue(true, notRidiculed)
 
 	// incorrect observations, should be returned
-	waldorf.ShouldBeTrue(1 == 2, incorrectOne)
-	waldorf.ShouldBeFalse("A" == "A", incorrectTwo)
+	waldorf.ShouldBeTrue(false, incorrectOne)
+	waldorf.ShouldBeFalse(true, incorrectTwo)
 
 	everythingWrong := waldorf.Ridicule()
 	assert.NotContains(t, everythingWrong.comps, notRidiculed)

@@ -2,6 +2,7 @@ package waldorf_test
 
 import (
 	"fmt"
+
 	"github.com/CIP-NL/waldorf"
 )
 
