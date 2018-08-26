@@ -15,6 +15,11 @@ jobs:
         key: v1-pkg-cache
         paths:
         - "/go/pkg"
+
+    - run:
+        name: Get dependencies
+        command: |
+          go get -t ./...
     - run:
         name: Test and run linters.
         command: |
