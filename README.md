@@ -1,3 +1,6 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/CIP-NL/waldorf)](https://goreportcard.com/report/github.com/CIP-NL/waldorf)
+[![CircleCI](https://circleci.com/gh/CIP-NL/waldorf/tree/master.svg?style=svg)](https://circleci.com/gh/CIP-NL/waldorf/tree/master)
+
 # waldorf
 
 An easy to use library to validate data, for example incomming API requests.
