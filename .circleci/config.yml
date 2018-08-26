@@ -1,0 +1,22 @@
+version: 2
+
+jobs:
+  # build runs a full test suite. It is called build because else the local CircleCI CLI will not run it.
+  build:
+    docker:
+    - image: redfoxio/go:1.10.3
+    working_directory: /go/src/github.com/CIP-NL/waldorf
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-pkg-cache
+    - save_cache:
+        key: v1-pkg-cache
+        paths:
+        - "/go/pkg"
+    - run:
+        name: Test and run linters.
+        command: |
+          go test -v -race
+          golangci-lint run
