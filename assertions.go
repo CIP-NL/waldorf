@@ -1,4 +1,4 @@
-// Package Waldorf implements a simple checking framework for doing multiple assertions and collecting the
+// Package waldorf implements a simple checking framework for doing multiple assertions and collecting the
 // result of the assertions. Waldorf does not use interfaces but instead relies on the user providing statements
 // which evaluate to booleans, making it typed as opposed to the assertions library by stretchr.
 package waldorf
